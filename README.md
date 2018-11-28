@@ -8,4 +8,5 @@ To run execute the following steps:
 `` sudo docker build . -t cdeep:v0.0.1 ``
 
 2) Curate and prepare input data
+`` sudo docker run -it cdeep:v0.0.1 CMD ``
 

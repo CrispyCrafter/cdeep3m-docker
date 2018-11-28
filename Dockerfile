@@ -112,4 +112,4 @@ RUN wget https://github.com/CRBS/cdeep3m/archive/v1.6.2.tar.gz && \
     export PATH=$PATH:/home/cdeep3m/cdeep3m-1.6.2/ 
 
 WORKDIR /home/cdeep3m/cdeep3m-1.6.2
-CMD [ "./runtraining.sh", "--version" ]
+ENTRYPOINT [ "./runtraining.sh"]
