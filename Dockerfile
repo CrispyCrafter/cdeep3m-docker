@@ -117,6 +117,8 @@ RUN   mkdir /train
 ENV PATH="/home/cdeep3m/cdeep3m-1.6.2/:${PATH}"
 RUN ls /home
 
-ENTRYPOINT  [ "runprediction.sh", "/train/sbem/mitochrondria/xy5.9nm40nmz/30000iterations_train_out",  "/home/cdeep3m/cdeep3m-1.6.2/mito_testsample/testset/", "/train/predictout30k" ]
+
+ENTRYPOINT  [ "runprediction.sh" ]
+#ENTRYPOINT  [ "runprediction.sh", "/train/sbem/mitochrondria/xy5.9nm40nmz/30000iterations_train_out",  "/home/cdeep3m/cdeep3m-1.6.2/mito_testsample/testset/", "/train/predictout30k" ]
 # CMD [ "runprediction.sh", "train/train_out/",  "mito_testsample/testset/", "train/predictout30k" ]
  
