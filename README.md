@@ -12,7 +12,6 @@ To run execute the following steps:
 ```
 mkdir train
 cp -r 'TRAININGFILES AND FOLDERS' train/
-
 ```
 
 3) Build docker compose
