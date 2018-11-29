@@ -1,0 +1,6 @@
+version: '3'
+services:
+  cdeep3m:
+    image: cdeep3m:v0.0.1
+    volumes:
+      - ./train:/train

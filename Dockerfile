@@ -1,6 +1,7 @@
 FROM nvidia/cuda:9.2-cudnn7-devel-ubuntu16.04
 
 # Build deps
+RUN useradd -ms /bin/bash cdeep3m
 
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
@@ -109,7 +110,13 @@ WORKDIR /home/cdeep3m
 RUN wget https://github.com/CRBS/cdeep3m/archive/v1.6.2.tar.gz && \
     tar -zxf v1.6.2.tar.gz && \
     cd cdeep3m-1.6.2 && \
-    export PATH=$PATH:/home/cdeep3m/cdeep3m-1.6.2/ 
+    export PATH=$PATH:/home/cdeep3m/cdeep3m-1.6.2
 
-WORKDIR /home/cdeep3m/cdeep3m-1.6.2
-ENTRYPOINT [ "./runtraining.sh"]
+RUN   mkdir /train
+
+ENV PATH="/home/cdeep3m/cdeep3m-1.6.2/:${PATH}"
+RUN ls /home
+
+ENTRYPOINT  [ "runprediction.sh", "/train/sbem/mitochrondria/xy5.9nm40nmz/30000iterations_train_out",  "/home/cdeep3m/cdeep3m-1.6.2/mito_testsample/testset/", "/train/predictout30k" ]
+# CMD [ "runprediction.sh", "train/train_out/",  "mito_testsample/testset/", "train/predictout30k" ]
+ 
