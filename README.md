@@ -19,7 +19,6 @@ cp -r 'TRAININGFILES AND FOLDERS' train/
 ```
 docker-compose build 
 ```
-
 4) Edit and replace COMMAND in docker-compose.yml      
 
 ```
