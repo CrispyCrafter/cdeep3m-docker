@@ -85,19 +85,29 @@ RUN  cd /usr/lib/x86_64-linux-gnu && \
      ln -s libhdf5_serial_hl.so.8.0.2 libhdf5_hl.so 
 
 RUN git clone https://github.com/CrispyCrafter/caffe_nd_sense_segmentation.git && \
-    mv caffe_nd_sense_segmentation/ /home/nd_sense/
+    mv caffe_nd_sense_segmentation/ /home/nd_sense/ 
 
 COPY Makefile.config /home/nd_sense/caffe_nd_sense_segmentation/Makefile.config
 WORKDIR /home/nd_sense/caffe_nd_sense_segmentation
 
-RUN make all -j $(($(nproc) + 1)) 
+RUN make all -j $(($(nproc) + 1)) && \
+    make test -j $(($(nproc) + 1)) && \
+    make pycaffe -j $(($(nproc) + 1)) && \
+    make distribute -j $(($(nproc) + 1)) 
+
+RUN cp -r distribute/bin/* /usr/bin/ && \
+    cp -r distribute/include/* /usr/include/ && \
+    cp -r distribute/lib/* /usr/lib/ 
 
 WORKDIR /home/cdeep3m
 RUN wget https://github.com/CRBS/cdeep3m/archive/v1.6.2.tar.gz && \
-    tar --strip-components=1 -zxf v1.6.2.tar.gz 
+    tar --strip-components=1 -zxf v1.6.2.tar.gz && \
+    rm v1.6.2.tar.gz
 
 RUN mkdir /train
 
 ENV PATH="/home/cdeep3m/:${PATH}"
+ENV PYTHONPATH="/home/nd_sense/caffe_nd_sense_segmentation/distribute/python:${PYTHONPATH}"
 
 ENTRYPOINT  [ "runtraining.sh" ]
+# CMD ["tail", "-f", "/dev/null"]
