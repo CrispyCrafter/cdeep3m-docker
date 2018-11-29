@@ -1,5 +1,5 @@
 # cdeep3m-docker
-Docker Container for running CDEEP3m - CUDA 9.2 - OpenCV 3 - CuDNN 7
+Docker Container for running CDEEP3m - CUDA 9.0 - OpenCV 2 - CuDNN 7
 
 Dependencies:
 
