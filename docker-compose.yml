@@ -1,6 +1,10 @@
 version: '3'
 services:
   cdeep3m:
-    image: cdeep3m:v0.0.1
+    build:
+      dockerfile: Dockerfile
+      context: .
+    image: cdeep3m
+    command: COMMAND  # runtraining.sh COMMAND 
     volumes:
       - ./train:/train

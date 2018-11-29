@@ -7,16 +7,32 @@ To run execute the following steps:
 
 `` sudo docker build . -t cdeep3m:v0.0.1 ``
 
-2) Collect sample training data
+2) Collect and prepare training data
 
-````
+```
 mkdir train
- wget https://s3-us-west-2.amazonaws.com/cdeep3m-trainedmodels/sbem/mitochrondria/xy5.9nm40nmz/sbem_mitochrondria_xy5.9nm40nmz_30000iter_trainedmodel.tar.gz 
- tar -xf sbem_mitochrondria_xy5.9nm40nmz_30000iter_trainedmodel.tar.gz -C train/
- rm sbem_mitochrondria_xy5.9nm40nmz_30000iter_trainedmodel.tar.gz
-````
+cp -r 'TRAININGFILES AND FOLDERS' train/
 
-3) To run Container (runtraining.sh)
+```
 
-`` sudo docker run -it cdeep3m:v0.0.1 --version ``
+3) Build docker compose
+```
+docker-compose build 
+```
 
+4) Edit and replace COMMAND in docker-compose.yml      
+
+```
+version: '3'
+services:
+  cdeep3m:
+    build:
+      dockerfile: Dockerfile
+      context: .
+    image: cdeep3m
+    command: COMMAND  # runtraining.sh COMMAND 
+    volumes:
+      - ./train:/train
+```
+
+5) Run docker-compose up
