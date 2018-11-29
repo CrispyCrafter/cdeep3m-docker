@@ -1,6 +1,11 @@
 # cdeep3m-docker
 Docker Container for running CDEEP3m - CUDA 9.2 - OpenCV 3 - CuDNN 7
 
+Dependencies:
+
+1) [Docker](https://www.digitalocean.com/community/tutorials?q=+How+To+Install+and+Use+Docker+on+Ubuntu) & [Docker-compose](https://www.digitalocean.com/community/tutorials?q=Docker+Compose+on+Ubuntu)  
+2) [Nvidia-docker](https://github.com/NVIDIA/nvidia-docker)
+
 To run execute the following steps:
 
 1) Build docker image:
