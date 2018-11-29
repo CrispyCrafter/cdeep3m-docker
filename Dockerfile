@@ -1,22 +1,11 @@
-FROM nvidia/cuda:9.2-cudnn7-devel-ubuntu16.04
-
-# Build deps
-RUN useradd -ms /bin/bash cdeep3m
+FROM nvidia/cuda:9.0-cudnn7-devel-ubuntu16.04
 
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
-	    cpio \
         build-essential \
         cmake \
         wget \
         ssh \
-        numactl \
-        net-tools \
-        iputils-ping \
-        screen \
-        libmlx4-1 libmlx5-1 ibutils  rdmacm-utils libibverbs1 ibverbs-utils perftest  \
-        openmpi-bin libopenmpi-dev \
-        ufw \
         python-dev \
         python-numpy \
         python-pip \
@@ -52,14 +41,13 @@ RUN apt-get update && \
         libswscale-dev \
         libv4l-dev gfortran \
         libleveldb1v5 libleveldb-dev \
-        parallel \
-        kate && \
-        rm -rf /var/lib/apt/lists/*
+        parallel
 
 # Build HDF5
-RUN apt-get update && apt-get install -y software-properties-common && \ 
+RUN apt-get install -y software-properties-common && \ 
     apt-add-repository ppa:octave/stable && \   
-    apt-get install -y --no-install-recommends octave octave-image octave-pkg-dev 
+    apt-get install -y --no-install-recommends octave octave-image octave-pkg-dev && \
+    rm -rf /var/lib/apt/lists/*
 
 RUN wget https://github.com/stegro/hdf5oct/archive/b047e6e611e874b02740e7465f5d139e74f9765f.tar.gz  && \
     mkdir /home/nd_sense/  && mkdir /home/nd_sense/HDF5 && \ 
@@ -96,8 +84,6 @@ RUN  cd /usr/lib/x86_64-linux-gnu && \
      ln -s libhdf5_serial.so.8.0.2 libhdf5.so && \
      ln -s libhdf5_serial_hl.so.8.0.2 libhdf5_hl.so 
 
-RUN dpkg -L libblas-dev && dpkg -L libblas-dev 
-
 RUN git clone https://github.com/CrispyCrafter/caffe_nd_sense_segmentation.git && \
     mv caffe_nd_sense_segmentation/ /home/nd_sense/
 
@@ -115,6 +101,3 @@ RUN mkdir /train
 ENV PATH="/home/cdeep3m/:${PATH}"
 
 ENTRYPOINT  [ "runtraining.sh" ]
-#ENTRYPOINT  [ "runprediction.sh", "/train/sbem/mitochrondria/xy5.9nm40nmz/30000iterations_train_out",  "/home/cdeep3m/cdeep3m-1.6.2/mito_testsample/testset/", "/train/predictout30k" ]
-# CMD [ "runprediction.sh", "train/train_out/",  "mito_testsample/testset/", "train/predictout30k" ]
- 

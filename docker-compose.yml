@@ -1,10 +1,13 @@
-version: '3'
+version: '2.3'
 services:
   cdeep3m:
+    image: cdeep3m
     build:
       dockerfile: Dockerfile
       context: .
-    image: cdeep3m
-    command: COMMAND  # runtraining.sh COMMAND 
+    runtime: nvidia
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+    command: /train/augdata /train/trainout # runtraining.sh COMMAND 
     volumes:
       - ./train:/train
