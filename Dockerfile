@@ -99,11 +99,10 @@ RUN cp -r distribute/bin/* /usr/bin/ && \
     cp -r distribute/include/* /usr/include/ && \
     cp -r distribute/lib/* /usr/lib/ 
 
-WORKDIR /home/cdeep3m
-RUN wget https://github.com/CRBS/cdeep3m/archive/v1.6.2.tar.gz && \
-    tar --strip-components=1 -zxf v1.6.2.tar.gz && \
-    rm v1.6.2.tar.gz
+WORKDIR /home
+RUN git clone https://github.com/CrispyCrafter/cdeep3m.git
 
+WORKDIR /home/cdeep3m
 RUN mkdir /train
 
 ENV PATH="/home/cdeep3m/:${PATH}"

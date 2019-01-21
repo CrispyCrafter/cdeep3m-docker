@@ -8,6 +8,7 @@ services:
     runtime: nvidia
     environment:
       - NVIDIA_VISIBLE_DEVICES=all
-    command: /train/augdata /train/trainout # runtraining.sh COMMAND 
+    command: /train/augdata /train/trainout --iter_size 1 --numiterations 10000 # runtraining.sh COMMAND 
     volumes:
       - ./train:/train
+      #/train/augdata /train/trainout
