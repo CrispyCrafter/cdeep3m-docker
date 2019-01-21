@@ -13,6 +13,6 @@ pandas==0.12.0
 python-dateutil>=1.4,<2
 protobuf==2.5.0
 python-gflags==2.0
-pyyaml==3.13
+pyyaml>=4.2b1
 Pillow==4.3.0
 six==1.10
