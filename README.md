@@ -32,7 +32,7 @@ services:
     runtime: nvidia
     environment:
       - NVIDIA_VISIBLE_DEVICES=all
-    command: --version # runtraining.sh COMMAND 
+    command: COMMAND # runtraining.sh COMMAND 
     volumes:
       - ./train:/train
 ```
