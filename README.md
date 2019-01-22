@@ -37,4 +37,11 @@ services:
       - ./train:/train
 ```
 
-4) Run docker-compose up
+4) Run:
+``` 
+docker-compose up
+```
+5) If rebuilding docker-compose image after changes to cdeep3m master run:
+```
+docker-compose build --no-cache
+```
