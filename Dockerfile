@@ -100,7 +100,7 @@ RUN cp -r distribute/bin/* /usr/bin/ && \
     cp -r distribute/lib/* /usr/lib/ 
 
 WORKDIR /home
-RUN git clone https://github.com/CrispyCrafter/cdeep3m.git
+RUN git clone https://github.com/JurgenKriel/cdeep3m.git
 
 WORKDIR /home/cdeep3m
 RUN mkdir /train
