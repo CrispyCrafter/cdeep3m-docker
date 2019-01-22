@@ -41,6 +41,7 @@ RUN apt-get update && \
         libswscale-dev \
         libv4l-dev gfortran \
         libleveldb1v5 libleveldb-dev \
+        time \
         parallel
 
 # Build HDF5
@@ -100,7 +101,7 @@ RUN cp -r distribute/bin/* /usr/bin/ && \
     cp -r distribute/lib/* /usr/lib/ 
 
 WORKDIR /home
-RUN git clone https://github.com/CrispyCrafter/cdeep3m.git
+RUN git clone https://github.com/CRBS/cdeep3m.git
 
 WORKDIR /home/cdeep3m
 RUN mkdir /train
