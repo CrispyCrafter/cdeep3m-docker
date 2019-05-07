@@ -1,11 +1,10 @@
-version: '2.3'
+version: "3.5"
 services:
   cdeep3m:
     image: cdeep3m
     build:
       dockerfile: Dockerfile
       context: .
-    runtime: nvidia
     environment:
       - NVIDIA_VISIBLE_DEVICES=all
     command: /train/augdata /train/trainout --iter_size 1 --numiterations 10000 # runtraining.sh COMMAND 
